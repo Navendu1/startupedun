@@ -3,12 +3,16 @@ import { CaretDownIcon } from "@radix-ui/react-icons";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import "./NavigationMenu.css";
+import Logo from "./Logo";
 
 const NavigationMenuDemo = () => {
   return (
     <NavigationMenu.Root className="NavigationMenuRoot">
       <NavigationMenu.List className="NavigationMenuList">
-        <NavigationMenu.Item>
+        <NavigationMenu.Item className="flex items-center">
+          <NavigationMenu.Link href="/" className="mr-4">
+            <Logo />
+          </NavigationMenu.Link>
           <NavigationMenu.Trigger className="NavigationMenuTrigger">
             Learn <CaretDownIcon className="CaretDown" aria-hidden />
           </NavigationMenu.Trigger>
@@ -16,7 +20,7 @@ const NavigationMenuDemo = () => {
             <ul className="List one">
               <li style={{ gridRow: "span 3" }}>
                 <NavigationMenu.Link asChild>
-                  <a className="Callout" href="/">
+                  <a className="Callout" href="/learning-modules">
                     <svg
                       aria-hidden
                       width="38"
@@ -36,14 +40,26 @@ const NavigationMenuDemo = () => {
                 </NavigationMenu.Link>
               </li>
 
-              <ListItem href="/courses" title="Courses">
-                Comprehensive learning paths for entrepreneurs.
+              <ListItem href="/learning-modules/startup-basics" title="Startup Basics">
+                Introduction to startups, types, and case studies.
               </ListItem>
-              <ListItem href="/resources" title="Resources">
-                Tools and templates for your startup journey.
+              <ListItem href="/learning-modules/idea-generation" title="Idea Generation">
+                Ideation techniques and validation frameworks.
               </ListItem>
-              <ListItem href="/mentorship" title="Mentorship">
-                Connect with experienced entrepreneurs.
+              <ListItem href="/learning-modules/market-research" title="Market Research">
+                Primary/secondary research and competitive analysis.
+              </ListItem>
+              <ListItem href="/learning-modules/business-model" title="Business Model">
+                Business Model Canvas and revenue models.
+              </ListItem>
+              <ListItem href="/learning-modules/pitch-deck" title="Pitch Deck">
+                Creating effective pitch decks and presentations.
+              </ListItem>
+              <ListItem href="/learning-modules/financial-modeling" title="Financial Modeling">
+                Budgeting, forecasting, and financial planning.
+              </ListItem>
+              <ListItem href="/learning-modules/fundraising" title="Fundraising">
+                Funding types, pitching tips, and networking.
               </ListItem>
             </ul>
           </NavigationMenu.Content>
