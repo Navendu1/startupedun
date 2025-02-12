@@ -7,7 +7,6 @@ import QuickLinksSection from './components/QuickLinksSection'
 import SuccessStoriesSection from './components/SuccessStoriesSection'
 import LearningModulesSection from './components/LearningModulesSection'
 import InteractiveToolsSection from './components/InteractiveToolsSection'
-import { ModeToggle } from './components/mode-toggle'
 import './App.css'
 
 import StartupBasics from './pages/learning-modules/StartupBasics'
@@ -27,10 +26,7 @@ function App() {
         <main className="min-h-screen w-full bg-background text-foreground">
           <NavigationMenu />
           <div className="max-w-7xl mx-auto space-y-8 p-8">
-            <div className="absolute top-4 right-4">
-              <ModeToggle />
-            </div>
-            <Routes>
+              <Routes>
               <Route path="/" element={
                 <>
                   <OverviewSection />
