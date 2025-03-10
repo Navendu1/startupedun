@@ -9,8 +9,8 @@ const NavigationMenuDemo = () => {
   return (
     <NavigationMenu.Root className="NavigationMenuRoot">
       <NavigationMenu.List className="NavigationMenuList">
-        <NavigationMenu.Item className="flex items-center">
-          <NavigationMenu.Link href="/" className="mr-4">
+        <NavigationMenu.Item>
+          <NavigationMenu.Link href="/" className="flex items-center mr-4">
             <Logo />
           </NavigationMenu.Link>
           <NavigationMenu.Trigger className="NavigationMenuTrigger">
@@ -39,7 +39,12 @@ const NavigationMenuDemo = () => {
                   </a>
                 </NavigationMenu.Link>
               </li>
-
+              <ListItem href="/learning-modules/text-learning" title="Text Learning">
+                Text-based learning resources and materials.
+              </ListItem>
+              <ListItem href="/learning-modules/video-learning" title="Video Learning">
+                Video tutorials and educational content.
+              </ListItem>
               <ListItem href="/learning-modules/startup-basics" title="Startup Basics">
                 Introduction to startups, types, and case studies.
               </ListItem>
@@ -61,6 +66,43 @@ const NavigationMenuDemo = () => {
               <ListItem href="/learning-modules/fundraising" title="Fundraising">
                 Funding types, pitching tips, and networking.
               </ListItem>
+              
+
+              <li>
+                <h3 className="px-3 py-2 text-sm font-semibold">Chapters</h3>
+                <div className="space-y-2">
+                  <ListItem href="/learning-modules/chapters/introduction-to-startups" title="Introduction to Startups">
+                    Get started with startup fundamentals.
+                  </ListItem>
+                  <ListItem href="/learning-modules/chapters/finding-your-business-idea" title="Finding Your Business Idea">
+                    Discover and validate business ideas.
+                  </ListItem>
+                  <ListItem href="/learning-modules/chapters/market-research-fundamentals" title="Market Research">
+                    Learn market research essentials.
+                  </ListItem>
+                  <ListItem href="/learning-modules/chapters/business-model-development" title="Business Model">
+                    Develop your business model.
+                  </ListItem>
+                  <ListItem href="/learning-modules/chapters/financial-planning" title="Financial Planning">
+                    Master startup financial planning.
+                  </ListItem>
+                  <ListItem href="/learning-modules/chapters/legal-basics" title="Legal Basics">
+                    Understand legal requirements.
+                  </ListItem>
+                  <ListItem href="/learning-modules/chapters/building-your-team" title="Building Your Team">
+                    Learn team building strategies.
+                  </ListItem>
+                  <ListItem href="/learning-modules/chapters/marketing-fundamentals" title="Marketing">
+                    Master marketing essentials.
+                  </ListItem>
+                  <ListItem href="/learning-modules/chapters/fundraising-essentials" title="Fundraising">
+                    Learn about startup funding.
+                  </ListItem>
+                  <ListItem href="/learning-modules/chapters/growth-and-scaling" title="Growth & Scaling">
+                    Strategies for startup growth.
+                  </ListItem>
+                </div>
+              </li>
             </ul>
           </NavigationMenu.Content>
         </NavigationMenu.Item>
@@ -71,6 +113,9 @@ const NavigationMenuDemo = () => {
           </NavigationMenu.Trigger>
           <NavigationMenu.Content className="NavigationMenuContent">
             <ul className="List two">
+              <ListItem title="Success Stories" href="/success-stories">
+                Read inspiring startup success stories.
+              </ListItem>
               <ListItem title="Our Mission" href="/about/mission">
                 Learn about our vision and goals.
               </ListItem>

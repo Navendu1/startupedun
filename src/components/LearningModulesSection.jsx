@@ -3,97 +3,83 @@ import { Link } from 'react-router-dom';
 export default function LearningModulesSection() {
   const modules = [
     {
-      title: "📚 Text-based Learning",
-      topics: [
-        "10 chapters on startup basics",
-        "Structured content",
-        "Step-by-step guides"
-      ],
-      link: "/text-learning"
+      title: "Text Learning",
+      description: "Text-based learning resources and materials.",
+      path: "/learning-modules/text-learning",
+      icon: "📚"
     },
     {
-      title: "🎥 Video-based Learning",
-      topics: [
-        "Curated video courses",
-        "Expert presentations",
-        "Startup tutorials"
-      ],
-      link: "/video-learning"
+      title: "Video Learning",
+      description: "Video tutorials and educational content.",
+      path: "/learning-modules/video-learning",
+      icon: "🎥"
     },
     {
-      title: "💡 Idea Generation & Validation",
-      topics: [
-        "Ideation techniques",
-        "Validation frameworks",
-        "Tools for brainstorming"
-      ],
-      link: "/idea-generation"
+      title: "Startup Basics",
+      description: "Introduction to startups, types, and case studies.",
+      path: "/learning-modules/startup-basics",
+      icon: "🚀"
     },
     {
-      title: "🔍 Market Research",
-      topics: [
-        "Primary and secondary research",
-        "Market sizing",
-        "Competitive analysis"
-      ],
-      link: "/market-research"
+      title: "Idea Generation",
+      description: "Ideation techniques and validation frameworks.",
+      path: "/learning-modules/idea-generation",
+      icon: "💡"
     },
     {
-      title: "📊 Building a Business Model",
-      topics: [
-        "Business Model Canvas",
-        "Revenue models",
-        "Customer segmentation"
-      ],
-      link: "/business-model"
+      title: "Market Research",
+      description: "Primary/secondary research and competitive analysis.",
+      path: "/learning-modules/market-research",
+      icon: "🔍"
     },
     {
-      title: "📈 Creating a Pitch Deck",
-      topics: [
-        "Slide templates",
-        "Example decks",
-        "Best practices"
-      ],
-      link: "/pitch-deck"
+      title: "Business Model",
+      description: "Business Model Canvas and revenue models.",
+      path: "/learning-modules/business-model",
+      icon: "📊"
     },
     {
-      title: "💰 Financial Modeling",
-      topics: [
-        "Budgeting",
-        "Revenue forecasting",
-        "Interactive tools"
-      ],
-      link: "/financial-modeling"
+      title: "Pitch Deck",
+      description: "Creating effective pitch decks and presentations.",
+      path: "/learning-modules/pitch-deck",
+      icon: "📑"
     },
     {
-      title: "🤝 Fundraising",
-      topics: [
-        "Types of funding",
-        "Pitching tips",
-        "Networking strategies"
-      ],
-      link: "/fundraising"
+      title: "Financial Modeling",
+      description: "Budgeting, forecasting, and financial planning.",
+      path: "/learning-modules/financial-modeling",
+      icon: "💰"
+    },
+    {
+      title: "Fundraising",
+      description: "Funding types, pitching tips, and networking.",
+      path: "/learning-modules/fundraising",
+      icon: "🏦"
     }
+  
   ];
 
   return (
-    <section className="learning-modules" id="learning-modules">
-      <h2>Learning Modules</h2>
-      <div className="modules-grid">
-        {modules.map((module, index) => (
-          <Link
-            key={index}
-            to={module.link}
-            className="module-card hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 p-6 rounded-lg shadow-md"
-          >
-            <h3 className="text-xl font-semibold mb-3">{module.title}</h3>
-            <ul className="space-y-1">
-              {module.topics.map((topic, i) => (
-                <li key={i} className="text-gray-600 dark:text-gray-400">{topic}</li>
-              ))}
-            </ul>
-          </Link>
-        ))}
+    <section className="py-12 px-4">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl font-bold mb-8">Learning Modules</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {modules.map((module, index) => (
+            <Link
+              key={index}
+              to={module.path}
+              className="block p-6 border rounded-lg hover:shadow-md transition-shadow bg-card"
+            >
+              <div className="flex items-start gap-4">
+                <div className="text-3xl">{module.icon}</div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">{module.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400">{module.description}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

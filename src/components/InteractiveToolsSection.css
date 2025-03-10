@@ -1,0 +1,16 @@
+.interactive-tools {
+  background-color: #f8fafc;
+}
+
+.interactive-tools a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.interactive-tools a:hover {
+  text-decoration: none;
+}
+
+.interactive-tools .text-4xl {
+  line-height: 1;
+}
