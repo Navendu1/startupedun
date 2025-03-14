@@ -3,7 +3,7 @@ import './tools.css';
 import { Button } from "../../components/ui/button";
 
 export default function Fundraising() {
-  const [activeSection, setActiveSection] = useState('calculator');
+  const [activeSection, setActiveSection] = useState('matching');
   const [fundingData, setFundingData] = useState({
     current_valuation: '',
     funding_needed: '',
@@ -14,44 +14,101 @@ export default function Fundraising() {
   });
   const [calculations, setCalculations] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [investorSearchData, setInvestorSearchData] = useState({
+    industry: '',
+    customIndustry: '',
+    stage: '',
+    minInvestment: '',
+    maxInvestment: '',
+    businessDescription: ''
+  });
+  const [investors, setInvestors] = useState(null);
+  const [searchError, setSearchError] = useState('');
+
+  const industries = [
+    'AI/ML', 'EdTech', 'FinTech', 'HealthTech', 'E-commerce', 
+    'SaaS', 'Enterprise Software', 'Consumer Tech', 'CleanTech', 'Gaming',
+    'BioTech', 'AgTech', 'SpaceTech', 'Robotics', 'Cybersecurity',
+    'Web3/Blockchain', 'IoT', 'Retail Tech', 'PropTech', 'Other'
+  ];
+
+  const stages = ['Pre-Seed', 'Seed', 'Series A', 'Series B'];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFundingData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    if (name.startsWith('investor_')) {
+      setInvestorSearchData(prev => ({
+        ...prev,
+        [name.replace('investor_', '')]: value
+      }));
+    } else {
+      setFundingData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
+  };
+
+  const searchInvestors = async () => {
+    setLoading(true);
+    setSearchError('');
+    setInvestors(null);
+
+    const searchData = {
+      ...investorSearchData,
+      industry: investorSearchData.industry === 'Other' ? investorSearchData.customIndustry : investorSearchData.industry
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/api/investors/search', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(searchData)
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to search investors');
+      }
+
+      if (!data || !Array.isArray(data)) {
+        throw new Error('Invalid response format from server');
+      }
+
+      const validInvestors = data.filter(investor => 
+        investor.name &&
+        investor.firm &&
+        investor.industries &&
+        investor.investmentRange &&
+        investor.previousInvestments &&
+        investor.contactInfo
+      );
+
+      if (validInvestors.length === 0) {
+        throw new Error('No matching investors found. Try adjusting your search criteria.');
+      }
+
+      setInvestors(validInvestors);
+    } catch (error) {
+      console.error('Error:', error);
+      setSearchError(error.message || 'Failed to search investors. Please try again.');
+      setInvestors(null);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const calculateFunding = () => {
     setLoading(true);
-    // Simulated API call - replace with actual calculations
     setTimeout(() => {
       const mockCalculations = {
         dilution: (parseFloat(fundingData.equity_offered) || 0) + '%',
         post_money_valuation: (parseFloat(fundingData.current_valuation) || 0) / (1 - (parseFloat(fundingData.equity_offered) || 0) / 100),
         share_price: ((parseFloat(fundingData.current_valuation) || 0) / 1000000).toFixed(2),
         runway_extension: (parseFloat(fundingData.funding_needed) || 0) / (parseFloat(fundingData.monthly_burn) || 1),
-        suggested_investors: [
-          {
-            type: "Seed VC",
-            ticket_size: "$250K - $1M",
-            focus: "Early-stage startups",
-            stage_fit: "High"
-          },
-          {
-            type: "Angel Investors",
-            ticket_size: "$50K - $250K",
-            focus: "Industry-specific expertise",
-            stage_fit: "High"
-          },
-          {
-            type: "Micro VC",
-            ticket_size: "$100K - $500K",
-            focus: "Technology startups",
-            stage_fit: "Medium"
-          }
-        ]
       };
       setCalculations(mockCalculations);
       setLoading(false);
@@ -60,24 +117,22 @@ export default function Fundraising() {
 
   const resources = [
     {
-      title: "Pitch Deck Template",
-      description: "Standard pitch deck structure with key sections and examples",
-      type: "Template"
-    },
-    {
       title: "Valuation Guide",
-      description: "Methods and factors for startup valuation",
-      type: "Guide"
+      description: "Comprehensive video series on startup valuation methods",
+      type: "Video Series",
+      url: "https://youtube.com/playlist?list=PLUkh9m2BorqkgpNyRpP-NL3BS4yvFabXk&si=NPy66Kyb6rWO4kbl"
     },
     {
       title: "Term Sheet Basics",
-      description: "Understanding key terms and conditions",
-      type: "Guide"
+      description: "Video tutorials on understanding term sheets and negotiations",
+      type: "Video Series",
+      url: "https://youtube.com/playlist?list=PLUkh9m2Borqnk6tJUpGzN4RcDUBAjovqN&si=0Yq2NbAOGYbBNB7m"
     },
     {
       title: "Due Diligence Checklist",
-      description: "Prepare for investor due diligence",
-      type: "Checklist"
+      description: "Video guide on preparing for investor due diligence",
+      type: "Video Series",
+      url: "https://youtube.com/playlist?list=PLO2lMhGXhaC1XmZRqXEw_NJplqlOZG7Md&si=hf8hdDagmZAyQgEz"
     }
   ];
 
@@ -86,7 +141,7 @@ export default function Fundraising() {
       <h1 className="text-3xl font-bold mb-8">Fundraising Tools</h1>
 
       <div className="flex gap-4 mb-8">
-        {['calculator', 'resources', 'matching'].map((section) => (
+        {['matching', 'resources', 'calculator'].map((section) => (
           <Button
             key={section}
             variant={activeSection === section ? 'default' : 'outline'}
@@ -176,6 +231,9 @@ export default function Fundraising() {
                     <div className="metric-value">{calculations.runway_extension.toFixed(1)} months</div>
                   </div>
                 </div>
+                <div className="text-center text-gray-400 text-xs mt-4">
+                  LLM can make mistakes. Check important info.
+                </div>
               </div>
             )}
           </>
@@ -195,7 +253,12 @@ export default function Fundraising() {
                       </span>
                     </div>
                     <p className="text-gray-600 mb-4">{resource.description}</p>
-                    <Button variant="outline">Access Resource</Button>
+                    <Button 
+                      variant="outline" 
+                      onClick={() => window.open(resource.url, '_blank')}
+                    >
+                      Watch Videos
+                    </Button>
                   </div>
                 ))}
               </div>
@@ -203,38 +266,184 @@ export default function Fundraising() {
           </div>
         )}
 
-        {activeSection === 'matching' && calculations?.suggested_investors && (
+        {activeSection === 'matching' && (
           <div className="md:col-span-2">
             <div className="tool-section">
-              <h2 className="text-xl font-semibold mb-4">Suggested Investors</h2>
-              <div className="results-grid">
-                {calculations.suggested_investors.map((investor, index) => (
-                  <div key={index} className="result-card">
-                    <h3 className="text-lg font-semibold mb-2">{investor.type}</h3>
-                    <div className="space-y-2 text-sm">
-                      <div>
-                        <span className="metric-label">Ticket Size:</span>
-                        <span className="ml-2">{investor.ticket_size}</span>
-                      </div>
-                      <div>
-                        <span className="metric-label">Focus:</span>
-                        <span className="ml-2">{investor.focus}</span>
-                      </div>
-                      <div>
-                        <span className="metric-label">Stage Fit:</span>
-                        <span className={`ml-2 ${
-                          investor.stage_fit === 'High' 
-                            ? 'text-green-600' 
-                            : 'text-yellow-600'
-                        }`}>
-                          {investor.stage_fit}
-                        </span>
-                      </div>
-                    </div>
-                    <Button className="mt-4 w-full">View Profile</Button>
-                  </div>
-                ))}
+              <h2 className="text-xl font-semibold mb-4">Investor Search</h2>
+              
+              <div className="mb-6">
+                <div className="form-group mb-4">
+                  <label>Business Description</label>
+                  <textarea
+                    name="investor_businessDescription"
+                    value={investorSearchData.businessDescription}
+                    onChange={handleInputChange}
+                    placeholder="Describe your business, target market, unique value proposition..."
+                    className="w-full p-2 border rounded-md h-32"
+                  />
+                </div>
               </div>
+
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div className="space-y-4">
+                  <div className="form-group">
+                    <label>Industry Focus</label>
+                    <select
+                      name="investor_industry"
+                      value={investorSearchData.industry}
+                      onChange={handleInputChange}
+                      className="w-full p-2 border rounded-md"
+                    >
+                      <option value="">Select Industry</option>
+                      {industries.map(industry => (
+                        <option key={industry} value={industry}>{industry}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {investorSearchData.industry === 'Other' && (
+                    <div className="form-group">
+                      <label>Custom Industry</label>
+                      <input
+                        type="text"
+                        name="investor_customIndustry"
+                        value={investorSearchData.customIndustry}
+                        onChange={handleInputChange}
+                        placeholder="Enter your industry"
+                        className="w-full p-2 border rounded-md"
+                      />
+                    </div>
+                  )}
+
+                  <div className="form-group">
+                    <label>Investment Stage</label>
+                    <select
+                      name="investor_stage"
+                      value={investorSearchData.stage}
+                      onChange={handleInputChange}
+                      className="w-full p-2 border rounded-md"
+                    >
+                      <option value="">Select Stage</option>
+                      {stages.map(stage => (
+                        <option key={stage} value={stage}>{stage}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="form-group">
+                    <label>Min Investment ($)</label>
+                    <input
+                      type="number"
+                      name="investor_minInvestment"
+                      value={investorSearchData.minInvestment}
+                      onChange={handleInputChange}
+                      placeholder="e.g., 100000"
+                      className="w-full p-2 border rounded-md"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Max Investment ($)</label>
+                    <input
+                      type="number"
+                      name="investor_maxInvestment"
+                      value={investorSearchData.maxInvestment}
+                      onChange={handleInputChange}
+                      placeholder="e.g., 1000000"
+                      className="w-full p-2 border rounded-md"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <Button 
+                onClick={searchInvestors}
+                disabled={loading}
+                className="w-full"
+              >
+                {loading ? "Searching..." : "Search Investors"}
+              </Button>
+
+              {searchError && (
+                <div className="text-center text-red-600 mt-4 p-4 bg-red-50 rounded-md border border-red-200">
+                  {searchError}
+                </div>
+              )}
+
+              {investors && (
+                <div className="mt-8">
+                  <h3 className="text-xl font-semibold mb-4">Matching Investors</h3>
+                  <div className="text-center text-gray-400 text-xs mb-4">
+                    LLM can make mistakes. Check important info.
+                  </div>
+                  <div className="results-grid">
+                    {investors.map((investor, index) => (
+                      <div key={index} className="result-card">
+                        <div className="flex justify-between items-start mb-4">
+                          <div>
+                            <h3 className="text-lg font-semibold">{investor.name}</h3>
+                            <p className="text-sm text-gray-600">{investor.firm}</p>
+                          </div>
+                          <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
+                            {investor.stage}
+                          </span>
+                        </div>
+
+                        <div className="space-y-3">
+                          <div>
+                            <h4 className="font-semibold text-sm text-gray-700">Industries</h4>
+                            <div className="flex flex-wrap gap-2 mt-1">
+                              {investor.industries.map((industry, i) => (
+                                <span key={i} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                                  {industry}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div>
+                            <h4 className="font-semibold text-sm text-gray-700">Investment Range</h4>
+                            <p className="text-sm text-gray-600">{investor.investmentRange}</p>
+                          </div>
+
+                          <div>
+                            <h4 className="font-semibold text-sm text-gray-700">Notable Investments</h4>
+                            <ul className="list-disc list-inside text-sm text-gray-600">
+                              {investor.previousInvestments.map((investment, i) => (
+                                <li key={i}>{investment}</li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h4 className="font-semibold text-sm text-gray-700">Contact Information</h4>
+                            <div className="space-y-1 mt-1">
+                              {investor.contactInfo.email && (
+                                <a href={`mailto:${investor.contactInfo.email}`} className="text-sm text-blue-600 hover:underline block">
+                                  {investor.contactInfo.email}
+                                </a>
+                              )}
+                              {investor.contactInfo.linkedin && (
+                                <a href={investor.contactInfo.linkedin} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:underline block">
+                                  LinkedIn Profile
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {!searchError && !investors && !loading && (
+                <div className="text-center text-gray-500 mt-8">
+                  Use the filters above to search for investors that match your criteria
+                </div>
+              )}
             </div>
           </div>
         )}

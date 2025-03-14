@@ -151,6 +151,12 @@ export default function IdeaGenerator() {
           Enter a topic above and click &quot;Generate Ideas&quot; to get AI-powered startup suggestions
         </div>
       )}
+      
+      {ideas && (
+        <div className="text-center text-gray-400 text-xs mt-4">
+          LLM can make mistakes. Check important info.
+        </div>
+      )}
     </div>
   );
 }

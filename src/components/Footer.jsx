@@ -9,19 +9,7 @@ export default function Footer() {
             <p className="text-sm text-muted-foreground leading-relaxed">
               Empowering entrepreneurs with knowledge and tools to succeed in their startup journey.
             </p>
-            <div className="pt-4">
-              <h4 className="text-sm font-semibold mb-2">Subscribe to our newsletter</h4>
-              <div className="flex gap-2">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email"
-                  className="px-3 py-2 rounded-md bg-background border text-sm focus:outline-none focus:ring-2 focus:ring-primary flex-grow"
-                />
-                <button className="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90 transition-colors">
-                  Subscribe
-                </button>
-              </div>
-            </div>
+          
           </div>
 
           {/* Learning Modules */}

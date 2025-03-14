@@ -1,0 +1,260 @@
+/* SlideDeckCreator.css - Responsive Design */
+
+.slide-preview-section {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+/* Slide Card Styles */
+.slide-card {
+  background: linear-gradient(135deg, #ff6b6b5a 0%, #4ecdc56e 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* PPT Style Content Structure */
+.slide-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 0;
+}
+
+.slide-header {
+  margin-bottom: 1.5rem; /* 24px, equivalent to 2 line heights */
+}
+
+.slide-header h3 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 25px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #1a56db;
+  margin-bottom: 12px;
+}
+
+.slide-subtitle {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 25px;
+  line-height: 1.2;
+  margin-bottom: 36px; /* 3 line heights */
+  color: #374151;
+}
+
+.slide-text {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  line-height: 1.2;
+  color: #000000;
+  margin-bottom: 72px; /* 6 line heights */
+}
+
+/* Template Selection Styles */
+.template-card {
+  background: rgba(244, 241, 241, 0.9);
+  border-radius: 16px;
+  padding: 16px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .template-card {
+    padding: 12px;
+  }
+  
+  .slide-card {
+    padding: 16px;
+  }
+
+  .slide-header h3 {
+    font-size: 18px;
+  }
+
+  .slide-subtitle {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .slide-text {
+    font-size: 11px;
+    margin-bottom: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-preview-section {
+    padding: 0.5rem;
+  }
+
+  .template-card {
+    padding: 10px;
+  }
+
+  .slide-card {
+    padding: 12px;
+  }
+
+  .slide-header h3 {
+    font-size: 16px;
+  }
+
+  .slide-subtitle {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .slide-text {
+    font-size: 10px;
+    margin-bottom: 40px;
+  }
+}
+
+.template-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.template-card.selected {
+  border-color: #3b82f6;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.2) 100%);
+}
+
+.template-hints {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.template-hints h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #3b82f6;
+  margin-bottom: 8px;
+}
+
+.template-hints ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.template-hints li {
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 4px;
+  padding-left: 20px;
+  position: relative;
+}
+
+/* Bullets and Lists */
+.slide-bullets {
+  list-style: none;
+  padding-left: 16px;
+  margin: 8px 0;
+}
+
+.slide-bullets li {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 16px;
+  color: #000000;
+}
+
+.slide-bullets li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #3b82f6;
+}
+
+/* Loading Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.generate-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 480px) {
+  .generate-button {
+    min-width: 120px;
+    font-size: 14px;
+  }
+
+  .loading-spinner {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+  }
+}
+
+.generate-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Grid Layout Responsiveness */
+@media (max-width: 768px) {
+  .grid.md\\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Input Field Responsiveness */
+@media (max-width: 640px) {
+  .tool-section .flex {
+    flex-direction: column;
+  }
+
+  .tool-section .flex input {
+    margin-bottom: 12px;
+  }
+
+  .tool-section .flex button {
+    width: 100%;
+  }
+}
