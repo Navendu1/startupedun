@@ -2,6 +2,7 @@ import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { CaretDownIcon } from "@radix-ui/react-icons";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import "./NavigationMenu.css";
 import Logo from "./Logo";
 
@@ -10,9 +11,9 @@ const NavigationMenuDemo = () => {
     <NavigationMenu.Root className="NavigationMenuRoot">
       <NavigationMenu.List className="NavigationMenuList">
         <NavigationMenu.Item>
-          <NavigationMenu.Link href="/" className="flex items-center mr-4">
+          <Link to="/" className="flex items-center mr-4">
             <Logo />
-          </NavigationMenu.Link>
+          </Link>
           <NavigationMenu.Trigger className="NavigationMenuTrigger">
             Learn <CaretDownIcon className="CaretDown" aria-hidden />
           </NavigationMenu.Trigger>
@@ -20,7 +21,7 @@ const NavigationMenuDemo = () => {
             <ul className="List one">
               <li style={{ gridRow: "span 3" }}>
                 <NavigationMenu.Link asChild>
-                  <a className="Callout" href="/learning-modules">
+                  <Link className="Callout" to="/learning-modules">
                     <svg
                       aria-hidden
                       width="38"
@@ -36,69 +37,68 @@ const NavigationMenuDemo = () => {
                     <p className="CalloutText">
                       Empowering entrepreneurs through education.
                     </p>
-                  </a>
+                  </Link>
                 </NavigationMenu.Link>
               </li>
-              <ListItem href="/learning-modules/text-learning" title="Text Learning">
+              <ListItem to="/learning-modules/text-learning" title="Text Learning">
                 Text-based learning resources and materials.
               </ListItem>
-              <ListItem href="/learning-modules/video-learning" title="Video Learning">
+              <ListItem to="/learning-modules/video-learning" title="Video Learning">
                 Video tutorials and educational content.
               </ListItem>
-              <ListItem href="/learning-modules/startup-basics" title="Startup Basics">
+              <ListItem to="/learning-modules/startup-basics" title="Startup Basics">
                 Introduction to startups, types, and case studies.
               </ListItem>
-              <ListItem href="/learning-modules/idea-generation" title="Idea Generation">
+              <ListItem to="/learning-modules/idea-generation" title="Idea Generation">
                 Ideation techniques and validation frameworks.
               </ListItem>
-              <ListItem href="/learning-modules/market-research" title="Market Research">
+              <ListItem to="/learning-modules/market-research" title="Market Research">
                 Primary/secondary research and competitive analysis.
               </ListItem>
-              <ListItem href="/learning-modules/business-model" title="Business Model">
+              <ListItem to="/learning-modules/business-model" title="Business Model">
                 Business Model Canvas and revenue models.
               </ListItem>
-              <ListItem href="/learning-modules/pitch-deck" title="Pitch Deck">
+              <ListItem to="/learning-modules/pitch-deck" title="Pitch Deck">
                 Creating effective pitch decks and presentations.
               </ListItem>
-              <ListItem href="/learning-modules/financial-modeling" title="Financial Modeling">
+              <ListItem to="/learning-modules/financial-modeling" title="Financial Modeling">
                 Budgeting, forecasting, and financial planning.
               </ListItem>
-              <ListItem href="/learning-modules/fundraising" title="Fundraising">
+              <ListItem to="/learning-modules/fundraising" title="Fundraising">
                 Funding types, pitching tips, and networking.
               </ListItem>
-              
 
               <li>
                 <h3 className="px-3 py-2 text-sm font-semibold">Chapters</h3>
                 <div className="space-y-2">
-                  <ListItem href="/learning-modules/chapters/introduction-to-startups" title="Introduction to Startups">
+                  <ListItem to="/learning-modules/chapters/introduction-to-startups" title="Introduction to Startups">
                     Get started with startup fundamentals.
                   </ListItem>
-                  <ListItem href="/learning-modules/chapters/finding-your-business-idea" title="Finding Your Business Idea">
+                  <ListItem to="/learning-modules/chapters/finding-your-business-idea" title="Finding Your Business Idea">
                     Discover and validate business ideas.
                   </ListItem>
-                  <ListItem href="/learning-modules/chapters/market-research-fundamentals" title="Market Research">
+                  <ListItem to="/learning-modules/chapters/market-research-fundamentals" title="Market Research">
                     Learn market research essentials.
                   </ListItem>
-                  <ListItem href="/learning-modules/chapters/business-model-development" title="Business Model">
+                  <ListItem to="/learning-modules/chapters/business-model-development" title="Business Model">
                     Develop your business model.
                   </ListItem>
-                  <ListItem href="/learning-modules/chapters/financial-planning" title="Financial Planning">
+                  <ListItem to="/learning-modules/chapters/financial-planning" title="Financial Planning">
                     Master startup financial planning.
                   </ListItem>
-                  <ListItem href="/learning-modules/chapters/legal-basics" title="Legal Basics">
+                  <ListItem to="/learning-modules/chapters/legal-basics" title="Legal Basics">
                     Understand legal requirements.
                   </ListItem>
-                  <ListItem href="/learning-modules/chapters/building-your-team" title="Building Your Team">
+                  <ListItem to="/learning-modules/chapters/building-your-team" title="Building Your Team">
                     Learn team building strategies.
                   </ListItem>
-                  <ListItem href="/learning-modules/chapters/marketing-fundamentals" title="Marketing">
+                  <ListItem to="/learning-modules/chapters/marketing-fundamentals" title="Marketing">
                     Master marketing essentials.
                   </ListItem>
-                  <ListItem href="/learning-modules/chapters/fundraising-essentials" title="Fundraising">
+                  <ListItem to="/learning-modules/chapters/fundraising-essentials" title="Fundraising">
                     Learn about startup funding.
                   </ListItem>
-                  <ListItem href="/learning-modules/chapters/growth-and-scaling" title="Growth & Scaling">
+                  <ListItem to="/learning-modules/chapters/growth-and-scaling" title="Growth & Scaling">
                     Strategies for startup growth.
                   </ListItem>
                 </div>
@@ -113,16 +113,16 @@ const NavigationMenuDemo = () => {
           </NavigationMenu.Trigger>
           <NavigationMenu.Content className="NavigationMenuContent">
             <ul className="List two">
-              <ListItem title="Success Stories" href="/success-stories">
+              <ListItem title="Success Stories" to="/success-stories">
                 Read inspiring startup success stories.
               </ListItem>
-              <ListItem title="Our Mission" href="/about/mission">
+              <ListItem title="Our Mission" to="/about/mission">
                 Learn about our vision and goals.
               </ListItem>
-              <ListItem title="Team" href="/about/team">
+              <ListItem title="Team" to="/about/team">
                 Meet the people behind StartupEdu.
               </ListItem>
-              <ListItem title="Partners" href="/about/partners">
+              <ListItem title="Partners" to="/about/partners">
                 Our network of supporters and collaborators.
               </ListItem>
             </ul>
@@ -130,12 +130,12 @@ const NavigationMenuDemo = () => {
         </NavigationMenu.Item>
 
         <NavigationMenu.Item>
-          <NavigationMenu.Link
+          <Link
             className="NavigationMenuLink"
-            href="/contact"
+            to="/contact"
           >
             Contact
-          </NavigationMenu.Link>
+          </Link>
         </NavigationMenu.Item>
 
         <NavigationMenu.Indicator className="NavigationMenuIndicator">
@@ -154,13 +154,13 @@ const ListItem = ({ className, children, title, ...props }) => {
   return (
     <li>
       <NavigationMenu.Link asChild>
-        <a
+        <Link
           className={classNames("ListItemLink", className)}
-          {...props}
+          to={props.to}
         >
           <div className="ListItemHeading">{title}</div>
           <p className="ListItemText">{children}</p>
-        </a>
+        </Link>
       </NavigationMenu.Link>
     </li>
   );
@@ -170,6 +170,7 @@ ListItem.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
 };
 
 export default NavigationMenuDemo;
