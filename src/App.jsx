@@ -20,7 +20,7 @@ import Fundraising from "./pages/tools/Fundraising";
 import SuccessStories from "./pages/success-stories/SuccessStories";
 
 // Learning Module Imports
-import StartupBasics from "./pages/learning-modules/StartupBasics";
+//import StartupBasics from "./pages/learning-modules/StartupBasics";
 import IdeaGeneration from "./pages/learning-modules/IdeaGeneration";
 import MarketResearch from "./pages/learning-modules/MarketResearch";
 import BusinessModel from "./pages/learning-modules/BusinessModel";
@@ -72,7 +72,7 @@ function App() {
               <Route path="/success-stories" element={<SuccessStories />} />
               
               {/* Learning Module Routes */}
-              <Route path="/learning-modules/startup-basics" element={<StartupBasics />} />
+             
               <Route path="/learning-modules/idea-generation" element={<IdeaGeneration />} />
               <Route path="/learning-modules/market-research" element={<MarketResearch />} />
               <Route path="/learning-modules/business-model" element={<BusinessModel />} />

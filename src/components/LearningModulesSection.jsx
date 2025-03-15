@@ -14,12 +14,12 @@ export default function LearningModulesSection() {
       path: "/learning-modules/video-learning",
       icon: "🎥"
     },
-    {
-      title: "Startup Basics",
-      description: "Introduction to startups, types, and case studies.",
-      path: "/learning-modules/startup-basics",
-      icon: "🚀"
-    },
+    // {
+    //   title: "Startup Basics",
+    //   description: "Introduction to startups, types, and case studies.",
+    //   path: "/learning-modules/startup-basics",
+    //   icon: "🚀"
+    // },
     {
       title: "Idea Generation",
       description: "Ideation techniques and validation frameworks.",
