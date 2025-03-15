@@ -284,7 +284,7 @@
   .content p {
     font-size: 1rem;
     margin-bottom: 1rem;
-    text-align: left;
+    text-align: justify;
   }
 
   .content blockquote {
@@ -294,6 +294,10 @@
 
   .content ul.list-disc {
     padding: 0.5rem 0.75rem;
+  }
+
+  .content ul.list-disc li {
+    text-align: justify;
   }
 
   .additional-resource a {
