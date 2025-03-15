@@ -15,17 +15,17 @@ export default function InteractiveToolsSection() {
     },
     {
       name: "Slide Deck Creator",
-      description: "Drag-and-drop slide builder with templates",
+      description: "AI slide builder with templates",
       icon: "📑"
     },
     {
       name: "Financial Mockup Tool",
-      description: "Input financial data to generate balance sheets and forecasts",
+      description: "Input financial & balance sheets and forecasts",
       icon: "💰"
     },
     {
       name: "Fundraising",
-      description: "Calculate funding needs and connect with investors",
+      description: "Connect with investors and calculate funding needs",
       icon: "💸"
     }
   ];

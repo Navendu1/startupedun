@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from "./components/theme-provider";
+import ScrollToTop from "./components/ScrollToTop";
 import './App.css';
 import './global.css';
 import NavigationMenu from "./components/NavigationMenu";
@@ -56,6 +57,7 @@ function Home() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <div className="min-h-screen bg-background">
           <NavigationMenu />

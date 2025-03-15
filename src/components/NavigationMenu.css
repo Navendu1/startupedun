@@ -21,7 +21,8 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 1200px;
-  height: 80px;
+  min-height: 60px;
+  flex-wrap: wrap;
 }
 
 .NavigationMenuList > li {
@@ -114,14 +115,17 @@
 }
 
 .List.one {
-  width: 500px;
-  grid-template-columns: 0.75fr 1fr;
+  width: 100%;
+  max-width: 500px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
 }
 
 .List.two {
-  width: 600px;
-  grid-auto-flow: column;
-  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  max-width: 600px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
 }
 
 .Callout {
@@ -243,6 +247,95 @@
 
 .NavigationMenuViewport[data-state='closed'] {
   animation: scaleOut 200ms ease;
+}
+
+@media (max-width: 768px) {
+  .NavigationMenuList {
+    padding: 8px 4px;
+    gap: 4px;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  .NavigationMenuTrigger,
+  .NavigationMenuLink {
+    padding: 4px 8px;
+    font-size: 13px;
+    height: 36px;
+    white-space: nowrap;
+  }
+
+  .List {
+    padding: 12px;
+  }
+
+  .ListItemLink {
+    padding: 6px;
+    font-size: 13px;
+  }
+
+  .CalloutHeading {
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 4px;
+  }
+
+  .CalloutText {
+    font-size: 12px;
+  }
+
+  .ListItemHeading {
+    font-size: 13px;
+  }
+
+  .ListItemText {
+    font-size: 12px;
+  }
+
+  .NavigationMenuRoot a[href="/"] {
+    height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .NavigationMenuList {
+    padding: 6px 2px;
+    gap: 2px;
+  }
+
+  .NavigationMenuTrigger,
+  .NavigationMenuLink {
+    padding: 4px 6px;
+    font-size: 12px;
+    height: 32px;
+  }
+
+  .List.one,
+  .List.two {
+    grid-template-columns: 1fr;
+  }
+
+  .NavigationMenuContent {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .ViewportPosition {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+  }
+
+  .NavigationMenuViewport {
+    margin-top: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }
 
 @keyframes enterFromRight {

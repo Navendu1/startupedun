@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 
 export default function SuccessStoriesSection() {
   const story = {
-    title: "✨ Local Success Stories",
+    title: "✨ Startup Success Stories",
     description: "Discover inspiring journeys of entrepreneurs just like you in your area! 🚀 Learn from their experiences and get motivated by relatable success stories from your nearby startup community. 💡"
   };
 
   return (
-    <section className="success-stories">
+    <section id="success-stories" className="success-stories">
       <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>Success Stories</h2>
       <div style={{
         display: 'flex',

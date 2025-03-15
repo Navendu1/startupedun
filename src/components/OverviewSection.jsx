@@ -1,10 +1,10 @@
 import { ArrowRight } from "lucide-react";
 
 export default function OverviewSection() {
-  const scrollToTools = () => {
-    const toolsSection = document.getElementById('interactive-tools');
-    if (toolsSection) {
-      toolsSection.scrollIntoView({ behavior: 'smooth' });
+  const scrollToLearningModules = () => {
+    const learningModulesSection = document.getElementById('learning-modules');
+    if (learningModulesSection) {
+      learningModulesSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -23,10 +23,10 @@ export default function OverviewSection() {
             </p>
             <div className="inline-block">
               <button 
-                onClick={scrollToTools}
+                onClick={scrollToLearningModules}
                 className="group flex items-center gap-2 text-primary hover:text-primary/80 font-semibold transition-colors"
               >
-                Explore Tools
+                Explore Learning Modules
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </button>
             </div>
@@ -38,7 +38,6 @@ export default function OverviewSection() {
                   { title: "Learning Modules", count: "10+" },
                   { title: "Interactive Tools", count: "5+" },
                   { title: "Success Stories", count: "20+" },
-                  { title: "Expert Insights", count: "50+" }
                 ].map((item, index) => (
                   <div key={index} className="text-center p-4 rounded-lg bg-muted/50">
                     <p className="text-2xl font-bold text-primary mb-1">{item.count}</p>
