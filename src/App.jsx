@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 
 // Page Imports
 import IdeaGenerator from "./pages/tools/IdeaGenerator";
+import AIStartupMentor from "./pages/tools/AIStartupMentor";
 import MarketAnalysis from "./pages/tools/MarketAnalysis";
 import SlideDeckCreator from "./pages/tools/SlideDeckCreator";
 import FinancialMockup from "./pages/tools/FinancialMockup";
@@ -65,6 +66,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/tools/idea-generator" element={<IdeaGenerator />} />
+              <Route path="/tools/ai-startup-mentor" element={<AIStartupMentor />} />
               <Route path="/tools/market-analysis-mockup" element={<MarketAnalysis />} />
               <Route path="/tools/slide-deck-creator" element={<SlideDeckCreator />} />
               <Route path="/tools/financial-mockup-tool" element={<FinancialMockup />} />

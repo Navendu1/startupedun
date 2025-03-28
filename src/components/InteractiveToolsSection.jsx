@@ -9,6 +9,11 @@ export default function InteractiveToolsSection() {
       icon: "💡"
     },
     {
+      name: "AI Startup Mentor",
+      description: "Get personalized startup advice and guidance",
+      icon: "🤖"
+    },
+    {
       name: "Market Analysis Mockup",
       description: "Tools to input data and generate market reports",
       icon: "📊"
