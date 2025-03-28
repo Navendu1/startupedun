@@ -19,7 +19,7 @@ export default function AIStartupMentor() {
     setMentorResponse(null);
 
     try {
-      const response = await fetch('http://localhost:5000/api/mentor', {
+      const response = await fetch('https://backend-delta-eight-78.vercel.app/api/mentor', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -154,7 +154,7 @@ export default function SlideDeckCreator() {
     setSlides(null);
 
     try {
-      const response = await fetch('http://localhost:5000/api/slides', {
+      const response = await fetch('https://backend-delta-eight-78.vercel.app/api/slides', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

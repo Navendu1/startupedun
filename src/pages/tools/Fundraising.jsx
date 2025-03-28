@@ -60,7 +60,7 @@ export default function Fundraising() {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/api/investors/search', {
+      const response = await fetch('https://backend-delta-eight-78.vercel.app/api/investors/search', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
