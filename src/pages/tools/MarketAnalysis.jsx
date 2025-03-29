@@ -42,7 +42,7 @@ export default function MarketAnalysis() {
     setAnalysis(null);
 
     try {
-      const response = await fetch('https://backend-delta-eight-78.vercel.app/api/analysis', {
+      const response = await fetch('https://backend-bs6b.onrender.com/api/analysis', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

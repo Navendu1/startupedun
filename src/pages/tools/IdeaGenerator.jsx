@@ -19,7 +19,7 @@ export default function IdeaGenerator() {
     setIdeas(null);
 
     try {
-      const response = await fetch('https://backend-delta-eight-78.vercel.app/api/message', {
+      const response = await fetch('https://backend-bs6b.onrender.com/api/message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -41,7 +41,7 @@ export default function AIGenStartupStories() {
 
     try {
       const response = await retryFetch(
-        'https://backend-delta-eight-78.vercel.app/api/Aigenstartupstories',
+        'https://backend-bs6b.onrender.com/api/Aigenstartupstories',
         {
           method: 'POST',
           headers: {
